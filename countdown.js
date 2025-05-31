@@ -1,6 +1,6 @@
 const updateCountdown = () => {
   const now = new Date();
-  const start = new Date("2025-12-16T20:30:00");
+  const start = new Date("2024-12-16T20:30:00");
   let distance = now - start;
 
   if (distance < 0) distance = 0;
