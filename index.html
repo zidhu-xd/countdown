@@ -3,90 +3,234 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cozy Countdown Timer</title>
+  <title>Romantic Moments Countdown</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --cream: #FFF8F0;
+      --dusty-rose: #D4B8BD;
+      --deep-mauve: #8E6E76;
+      --vintage-brown: #5E4A42;
+      --gold: #C8A97E;
+    }
+    
     body {
       margin: 0;
       padding: 0;
-      background-color: #f3e5f5;
-      font-family: Arial, sans-serif;
-      color: #4a148c;
+      background-color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--vintage-brown);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
     }
 
     .countdown-container {
-      background-color: #f8bbd0;
-      border-radius: 24px;
-      padding: 2rem 1.5rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      background-color: var(--cream);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.05),
+        0 0 0 1px var(--dusty-rose),
+        0 0 0 2px var(--cream),
+        0 0 0 3px var(--dusty-rose);
       text-align: center;
       width: 90%;
-      max-width: 400px;
-      border: 3px solid #ce93d8;
+      max-width: 500px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .countdown-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--dusty-rose), var(--gold));
     }
 
     .title {
-      font-size: 20px;
-      margin-bottom: 1rem;
-      color: #6a1b9a;
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      color: var(--deep-mauve);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      position: relative;
+      display: inline-block;
     }
 
-    .subtitle {
-      font-size: 14px;
-      margin-bottom: 1rem;
-      color: #6a1b9a;
-      word-wrap: break-word;
+    .title::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 25%;
+      width: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .date-display {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      margin: 0.8rem 0;
+      color: var(--deep-mauve);
+      letter-spacing: 0.3px;
+      font-weight: 300;
     }
 
     .time {
-      font-size: 16px;
-      margin-top: 1rem;
-      color: #4a148c;
-      letter-spacing: 1px;
-      line-height: 1.5;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
     }
 
-    .time span {
-      display: inline-block;
-      min-width: 60px;
+    .time-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 70px;
+    }
+
+    .time-value {
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--vintage-brown);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+      position: relative;
+    }
+
+    .time-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--deep-mauve);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+    }
+
+    .separator {
+      font-size: 1.8rem;
+      color: var(--gold);
+      align-self: center;
+      margin-top: 0.5rem;
+      opacity: 0.7;
+    }
+
+    .milliseconds {
+      font-size: 0.9rem;
+      color: var(--deep-mauve);
+      margin-top: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+      letter-spacing: 0;
+      opacity: 0.8;
     }
 
     @media (max-width: 480px) {
+      .countdown-container {
+        padding: 1.8rem;
+      }
+      
       .title {
-        font-size: 18px;
+        font-size: 1.4rem;
       }
-
-      .subtitle {
-        font-size: 12px;
+      
+      .time-value {
+        font-size: 1.8rem;
       }
-
-      .time {
-        font-size: 14px;
+      
+      .time-unit {
+        min-width: 60px;
       }
-
-      .time span {
-        min-width: 50px;
+      
+      .separator {
+        font-size: 1.4rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="countdown-container">
-    <div class="title">Time Since December 16, 2024 – 8:30 PM</div>
-    <div class="subtitle" id="currentDateTime"></div>
-    <div class="subtitle" id="startDateTime"></div>
-    <div class="time" id="countdown">
-      <span id="days">00</span> Days :
-      <span id="hours">00</span> Hours :
-      <span id="minutes">00</span> Minutes :
-      <span id="seconds">00</span> Seconds :
-      <span id="milliseconds">000</span> ms
+    <div class="title">Our Time Together</div>
+    <div class="date-display" id="startDateTime">Since December 16, 2024 – 8:30 PM</div>
+    <div class="date-display" id="currentDateTime"></div>
+    
+    <div class="time">
+      <div class="time-unit">
+        <div class="time-value" id="days">00</div>
+        <div class="time-label">Days</div>
+      </div>
+      <div class="separator">:</div>
+      <div class="time-unit">
+        <div class="time-value" id="hours">00</div>
+        <div class="time-label">Hours</div>
+      </div>
+      <div class="separator">:</div>
+      <div class="time-unit">
+        <div class="time-value" id="minutes">00</div>
+        <div class="time-label">Minutes</div>
+      </div>
+      <div class="separator">:</div>
+      <div class="time-unit">
+        <div class="time-value" id="seconds">00</div>
+        <div class="time-label">Seconds</div>
+        <div class="milliseconds" id="milliseconds">.000</div>
+      </div>
     </div>
   </div>
 
-  <script src="countdown.js"></script>
+  <script>
+    // Set your start date here (December 16, 2024 8:30 PM)
+    const startDate = new Date(2024, 11, 16, 20, 30, 0);
+    
+    function updateCountdown() {
+      const now = new Date();
+      const diff = now - startDate;
+      
+      // Calculate time units
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      const milliseconds = diff % 1000;
+      
+      // Update display
+      document.getElementById('days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = Math.floor(hours).toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+      document.getElementById('milliseconds').textContent = '.' + milliseconds.toString().padStart(3, '0');
+      
+      // Update current date time display
+      const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      };
+      document.getElementById('currentDateTime').textContent = 'Current Time: ' + now.toLocaleDateString('en-US', options);
+      
+      requestAnimationFrame(updateCountdown);
+    }
+    
+    // Initialize
+    document.getElementById('startDateTime').textContent = 'Since ' + startDate.toLocaleDateString('en-US', { 
+      month: 'long', 
+      day: 'numeric', 
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+    
+    updateCountdown();
+  </script>
 </body>
 </html>
