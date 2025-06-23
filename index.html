@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>6 Month Anniversary</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>
     body {
       background: linear-gradient(135deg, #FDF5E6 0%, #F5E8C7 100%);
@@ -18,31 +18,30 @@
       justify-content: center;
       min-height: 100vh;
     }
+
     #content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       text-align: center;
-      height: 100%;
     }
-    h1 {
+
+    h1, p {
       color: #8B4513;
       font-size: 24px;
       margin: 0;
       opacity: 0;
       animation: fadeIn 2s ease-in-out forwards;
     }
+
     p {
-      color: #8B4513;
-      font-size: 24px;
-      margin: 0;
-      opacity: 0;
-      animation: fadeIn 2s ease-in-out forwards 0.5s;
+      animation-delay: 0.5s;
     }
+
     #gif-container {
       margin: 10px 0;
     }
+
     #play-button, #cut-cake-button, #continue-button {
       background-color: #FF6347;
       color: white;
@@ -53,47 +52,57 @@
       transition: transform 0.3s ease;
       display: none;
     }
+
     #play-button {
       display: block;
     }
+
     #cut-cake-button, #continue-button {
       margin-top: 10px;
     }
+
     #play-button:hover, #cut-cake-button:hover, #continue-button:hover {
       transform: scale(1.1);
       box-shadow: 0 0 10px rgba(212, 160, 23, 0.5);
     }
+
     #gif-wrapper, #cake-piece-wrapper, #calendar-popup {
       display: none;
+      opacity: 1;
+      transition: opacity 0.3s ease-in-out;
     }
+
     #gif-wrapper img, #cake-piece-wrapper img {
       max-width: 112vw;
       height: auto;
-      animation: slideIn 1s ease-out;
     }
+
     #calendar-popup {
       margin: 20px 0;
       opacity: 0;
       animation: fadeIn 1s ease-in-out forwards;
     }
+
     #calendar-popup img {
       max-width: 200px;
       border: 2px solid #D4A017;
       border-radius: 5px;
     }
+
     .time-flowers {
-      display: flex;
+      display: none;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
       margin: 20px 0;
-      flex-wrap: wrap;
-      display: none;
     }
+
     .time-petal {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .time-value {
       width: 50px;
       height: 50px;
@@ -109,11 +118,13 @@
       position: relative;
       z-index: 1;
     }
+
     .time-label {
       font-size: 0.7rem;
       color: #8B4513;
       text-transform: lowercase;
     }
+
     #milliseconds {
       font-size: 0.6rem;
       color: #D4A017;
@@ -122,6 +133,7 @@
       right: 50%;
       transform: translateX(50%);
     }
+
     .flower-separator {
       color: #FF6347;
       font-size: 1rem;
@@ -129,23 +141,19 @@
       position: relative;
       top: -5px;
     }
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
-    @keyframes slideIn {
-      from { transform: scale(0); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
+
     @keyframes zoomIn {
       from { transform: scale(0.5); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
+
     @media (max-width: 600px) {
-      h1 {
-        font-size: 20px;
-      }
-      p {
+      h1, p {
         font-size: 20px;
       }
       #gif-wrapper img, #cake-piece-wrapper img, #calendar-popup img {
@@ -174,25 +182,13 @@
       <button id="continue-button">Continue</button>
       <div id="calendar-popup"><img src="calender.jpg" alt="calendar" loading="lazy"></div>
       <div class="time-flowers" id="time-flowers">
-        <div class="time-petal">
-          <div class="time-value" id="months">00</div>
-          <div class="time-label">months</div>
-        </div>
+        <div class="time-petal"><div class="time-value" id="months">00</div><div class="time-label">months</div></div>
         <div class="flower-separator">•</div>
-        <div class="time-petal">
-          <div class="time-value" id="days">00</div>
-          <div class="time-label">days</div>
-        </div>
+        <div class="time-petal"><div class="time-value" id="days">00</div><div class="time-label">days</div></div>
         <div class="flower-separator">•</div>
-        <div class="time-petal">
-          <div class="time-value" id="hours">00</div>
-          <div class="time-label">hours</div>
-        </div>
+        <div class="time-petal"><div class="time-value" id="hours">00</div><div class="time-label">hours</div></div>
         <div class="flower-separator">•</div>
-        <div class="time-petal">
-          <div class="time-value" id="minutes">00</div>
-          <div class="time-label">minutes</div>
-        </div>
+        <div class="time-petal"><div class="time-value" id="minutes">00</div><div class="time-label">minutes</div></div>
         <div class="flower-separator">•</div>
         <div class="time-petal">
           <div class="time-value" id="seconds">00</div>
@@ -204,36 +200,47 @@
   </div>
   <audio id="background-music" src="cakebg.mp3"></audio>
   <script>
-    document.getElementById('play-button').addEventListener('click', function() {
+    document.getElementById('play-button').addEventListener('click', function () {
       this.style.display = 'none';
       document.getElementById('gif-wrapper').style.display = 'block';
       const audio = document.getElementById('background-music');
       audio.volume = 0.4;
-      audio.play().catch(function(error) {
-        console.log("Error playing audio: ", error);
-        alert("Failed to play the celebration song. Please check the file or connection.");
+      audio.play().catch(err => {
+        console.log("Error playing audio:", err);
+        alert("Music playback failed.");
       });
       document.getElementById('cut-cake-button').style.display = 'block';
     });
 
-    document.getElementById('cut-cake-button').addEventListener('click', function() {
+    document.getElementById('cut-cake-button').addEventListener('click', function () {
       this.style.display = 'none';
+
+      const gifWrapper = document.getElementById('gif-wrapper');
       const cakePieceWrapper = document.getElementById('cake-piece-wrapper');
-      cakePieceWrapper.style.display = 'block';
-      cakePieceWrapper.style.animation = 'zoomIn 1s ease-out';
-      document.getElementById('continue-button').style.display = 'block';
+
+      // Fade out the first cake
+      gifWrapper.style.opacity = '0';
+      gifWrapper.style.transition = 'opacity 0.3s ease-out';
+
+      setTimeout(() => {
+        gifWrapper.style.display = 'none';
+
+        // Fade in cake piece instantly
+        cakePieceWrapper.style.display = 'block';
+        cakePieceWrapper.style.opacity = '1';
+        cakePieceWrapper.style.animation = 'zoomIn 0.3s ease-in-out';
+        document.getElementById('continue-button').style.display = 'block';
+      }, 300);
     });
 
-    document.getElementById('continue-button').addEventListener('click', function() {
+    document.getElementById('continue-button').addEventListener('click', function () {
       this.style.display = 'none';
       document.getElementById('gif-wrapper').style.display = 'none';
       document.getElementById('cake-piece-wrapper').style.display = 'none';
-      const calendarPopup = document.getElementById('calendar-popup');
-      calendarPopup.style.display = 'block';
-      const timeFlowers = document.getElementById('time-flowers');
-      timeFlowers.style.display = 'flex';
+      document.getElementById('calendar-popup').style.display = 'block';
+      document.getElementById('time-flowers').style.display = 'flex';
 
-      const startDate = new Date('2024-12-25T18:23:00+05:30'); // December 25, 2024, 6:23 PM IST
+      const startDate = new Date('2024-12-25T18:23:00+05:30');
       function updateCountdown() {
         const now = new Date();
         const diff = now - startDate;
@@ -250,6 +257,7 @@
             break;
           }
         }
+
         const remainingMs = diff - (tempDate - startDate);
         const days = Math.floor(remainingMs / msPerDay);
         const remainingMsAfterDays = remainingMs % msPerDay;
@@ -269,6 +277,7 @@
 
         requestAnimationFrame(updateCountdown);
       }
+
       updateCountdown();
     });
   </script>
