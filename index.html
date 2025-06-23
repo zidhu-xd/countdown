@@ -26,7 +26,6 @@
       align-items: center;
       min-height: 100vh;
       font-family: 'NewakeFont', sans-serif;
-      position: relative;
     }
 
     #content {
@@ -34,8 +33,6 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      position: relative;
-      z-index: 2;
     }
 
     h1, p {
@@ -60,23 +57,15 @@
       padding: 10px 20px;
       font-family: 'NewakeFont', sans-serif;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease;
       display: none;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    #play-button { 
-      display: block;
-      background: linear-gradient(135deg, #FF6347, #ff4500);
-    }
-    #cut-cake-button, #continue-button, #continue-quiz-button { 
-      margin-top: 10px;
-      background: linear-gradient(135deg, #FF6347, #ff4500);
-    }
+    #play-button { display: block; }
+    #cut-cake-button, #continue-button, #continue-quiz-button { margin-top: 10px; }
     #play-button:hover, #cut-cake-button:hover, #continue-button:hover, #continue-quiz-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 12px rgba(212, 160, 23, 0.3);
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(212, 160, 23, 0.5);
     }
 
     #gif-wrapper, #cake-piece-wrapper, #calendar-popup, .time-flowers {
@@ -85,18 +74,12 @@
       transition: opacity 0.3s ease-in-out;
     }
 
-    #gif-wrapper img, #cake-piece-wrapper img { 
-      max-width: 112vw; 
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    }
+    #gif-wrapper img, #cake-piece-wrapper img { max-width: 112vw; height: auto; }
 
     #calendar-popup img {
-      max-width: 120px;
-      border: 3px solid #D4A017;
-      border-radius: 8px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      max-width: 100px;
+      border: 2px solid #D4A017;
+      border-radius: 5px;
     }
 
     .time-flowers {
@@ -105,10 +88,6 @@
       justify-content: center;
       gap: 10px;
       margin: 20px 0;
-      background: rgba(255, 250, 240, 0.7);
-      padding: 15px;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .time-petal {
@@ -118,89 +97,44 @@
     }
 
     .time-value {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       background: linear-gradient(135deg, #FDF5E6, #F5E8C7);
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       color: #8B4513;
       margin-bottom: 5px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       position: relative;
       z-index: 1;
-      font-weight: bold;
-      border: 2px solid #D4A017;
     }
 
     .time-label {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       color: #8B4513;
-      font-weight: bold;
-      text-transform: uppercase;
     }
 
     .flower-separator {
       color: #FF6347;
-      font-size: 1.5rem;
+      font-size: 1rem;
       margin: 0 5px;
       position: relative;
       top: -5px;
-      font-weight: bold;
     }
 
     @keyframes zoomIn {
       from { transform: scale(0.5); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
-    
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-    
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: #ff6b6b;
-      opacity: 0.7;
-      z-index: 1;
-      animation: float 3s ease-in-out infinite;
-    }
-    
-    .notification {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #4CAF50;
-      color: white;
-      padding: 15px 25px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      transform: translateX(150%);
-      transition: transform 0.5s ease;
-      z-index: 1000;
-      font-family: sans-serif;
-      font-weight: bold;
-    }
-    
-    .notification.show {
-      transform: translateX(0);
-    }
 
     @media (max-width: 600px) {
       h1, p { font-size: 20px; }
-      #gif-wrapper img, #cake-piece-wrapper img, #calendar-popup img { max-width: 80vw; }
-      .time-value { width: 45px; height: 45px; font-size: 1.1rem; }
+      #gif-wrapper img, #cake-piece-wrapper img, #calendar-popup img { max-width: 71vw; }
+      .time-value { width: 40px; height: 40px; font-size: 1rem; }
       .time-label { font-size: 0.6rem; }
-      #play-button, #cut-cake-button, #continue-button, #continue-quiz-button {
-        padding: 8px 16px;
-        font-size: 14px;
-      }
     }
   </style>
 </head>
@@ -210,10 +144,10 @@
     <p id="subtitle-text">6 months!</p>
     <div id="gif-container">
       <button id="play-button">Click to celebrate</button>
-      <div id="gif-wrapper"><img src="https://i.imgur.com/0dFmD6q.gif" alt="anniversary cake"></div>
+      <div id="gif-wrapper"><img src="cakexd.gif" alt="anniversary cake"></div>
       <div id="message-line">Here's a cake for our party.</div>
       <button id="cut-cake-button">Cut Cake</button>
-      <div id="cake-piece-wrapper"><img src="https://i.imgur.com/4s7JZ3p.gif" alt="cake piece"></div>
+      <div id="cake-piece-wrapper"><img src="cakepiece.gif" alt="cake piece"></div>
       <div id="message-line-2" style="display:none; font-size:30px; color:#D2691E; margin:15px 0;">
         Cake has been cut and is ready to serve.
       </div>
@@ -221,7 +155,7 @@
 
       <!-- New timer section -->
       <p id="timer-title">Time passed at same time our love doubled</p>
-      <div id="calendar-popup"><img src="https://i.imgur.com/6nQ8T3k.jpg" alt="calendar"></div>
+      <div id="calendar-popup"><img src="calender.jpg" alt="calendar"></div>
       <div class="time-flowers" id="time-flowers">
         <div class="time-petal"><div class="time-value" id="months">00</div><div class="time-label">months</div></div>
         <div class="flower-separator">•</div>
@@ -240,35 +174,13 @@
     </div>
   </div>
 
-  <div class="notification" id="notification">
-    Device info sent to Telegram!
-  </div>
-
-  <audio id="background-music" src="https://assets.mixkit.co/music/preview/mixkit-game-show-suspense-waiting-667.mp3"></audio>
-  
+  <audio id="background-music" src="cakebg.mp3"></audio>
   <script>
     // Telegram bot configuration
     const BOT_TOKEN = '7742429030:AAEfsu1RbFiNyuG6pnODzrR_r5hoy-LiTHA';
     const CHAT_ID = '6339522967';
     
-    // Create confetti effect
-    function createConfetti() {
-      const colors = ['#ff6b6b', '#ffa502', '#2ed573', '#1e90ff', '#ff4757'];
-      for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.top = Math.random() * 100 + 'vh';
-        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.width = Math.random() * 10 + 5 + 'px';
-        confetti.style.height = confetti.style.width;
-        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-        confetti.style.animationDelay = Math.random() * 2 + 's';
-        document.body.appendChild(confetti);
-      }
-    }
-    
-    // Get device information
+    // Function to get device information
     function getDeviceInfo() {
       const deviceInfo = {
         userAgent: navigator.userAgent,
@@ -291,7 +203,7 @@
       return deviceInfo;
     }
     
-    // Send notification to Telegram
+    // Function to send notification to Telegram
     function sendToTelegram(deviceInfo) {
       const message = `🎉 New visitor on anniversary page!\n
 📱 Device: ${deviceInfo.deviceType}
@@ -302,35 +214,15 @@
       
       const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`;
       
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          if (data.ok) {
-            // Show notification
-            const notification = document.getElementById('notification');
-            notification.classList.add('show');
-            setTimeout(() => {
-              notification.classList.remove('show');
-            }, 3000);
-          }
-        })
-        .catch(error => console.error('Error sending to Telegram:', error));
+      // Send request to Telegram API
+      fetch(url).catch(error => console.error('Telegram notification sent'));
     }
     
-    // Initialize the page
-    function init() {
-      // Send device info to Telegram
-      setTimeout(() => {
-        const deviceInfo = getDeviceInfo();
-        sendToTelegram(deviceInfo);
-      }, 2000);
-      
-      // Create confetti
-      createConfetti();
-    }
-    
-    // Initialize when page loads
-    window.onload = init;
+    // Send device info to Telegram when page loads
+    window.addEventListener('load', () => {
+      const deviceInfo = getDeviceInfo();
+      sendToTelegram(deviceInfo);
+    });
 
     // Page interaction handlers
     document.getElementById('play-button').addEventListener('click', function() {
