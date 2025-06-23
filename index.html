@@ -35,7 +35,7 @@
 
     h1, p {
       color: #8B4513;
-      font-size: 24px;
+      font-size: 35px;
       margin: 0;
       opacity: 1;
       transition: opacity 0.3s ease-in-out;
@@ -43,7 +43,7 @@
 
     #message-line, #timer-title, #quiz-instruction {
       margin: 15px 0;
-      font-size: 16px;
+      font-size: 30px;
       color: #D2691E;
       display: none;
     }
@@ -59,14 +59,8 @@
       display: none;
     }
 
-    #play-button {
-      display: block;
-    }
-
-    #cut-cake-button, #continue-button, #continue-quiz-button {
-      margin-top: 10px;
-    }
-
+    #play-button { display: block; }
+    #cut-cake-button, #continue-button, #continue-quiz-button { margin-top: 10px; }
     #play-button:hover, #cut-cake-button:hover, #continue-button:hover, #continue-quiz-button:hover {
       transform: scale(1.1);
       box-shadow: 0 0 10px rgba(212, 160, 23, 0.5);
@@ -78,10 +72,7 @@
       transition: opacity 0.3s ease-in-out;
     }
 
-    #gif-wrapper img, #cake-piece-wrapper img {
-      max-width: 112vw;
-      height: auto;
-    }
+    #gif-wrapper img, #cake-piece-wrapper img { max-width: 112vw; height: auto; }
 
     #calendar-popup img {
       max-width: 200px;
@@ -138,20 +129,10 @@
     }
 
     @media (max-width: 600px) {
-      h1, p {
-        font-size: 20px;
-      }
-      #gif-wrapper img, #cake-piece-wrapper img, #calendar-popup img {
-        max-width: 71vw;
-      }
-      .time-value {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-      }
-      .time-label {
-        font-size: 0.6rem;
-      }
+      h1, p { font-size: 20px; }
+      #gif-wrapper img, #cake-piece-wrapper img, #calendar-popup img { max-width: 71vw; }
+      .time-value { width: 40px; height: 40px; font-size: 1rem; }
+      .time-label { font-size: 0.6rem; }
     }
   </style>
 </head>
@@ -161,18 +142,18 @@
     <p id="subtitle-text">6 months!</p>
     <div id="gif-container">
       <button id="play-button">Click to celebrate</button>
-      <div id="gif-wrapper"><img src="cakexd.gif" alt="anniversary cake" loading="lazy"></div>
+      <div id="gif-wrapper"><img src="cakexd.gif" alt="anniversary cake"></div>
       <div id="message-line">Here's a cake for our party.</div>
       <button id="cut-cake-button">Cut Cake</button>
-      <div id="cake-piece-wrapper"><img src="cakepiece.gif" alt="cake piece" loading="lazy"></div>
-      <div id="message-line-2" style="display: none; font-size: 16px; color: #D2691E; margin: 15px 0;">
+      <div id="cake-piece-wrapper"><img src="cakepiece.gif" alt="cake piece"></div>
+      <div id="message-line-2" style="display:none; font-size:30px; color:#D2691E; margin:15px 0;">
         Cake has been cut and is ready to serve.
       </div>
       <button id="continue-button">Continue</button>
 
       <!-- New timer section -->
       <p id="timer-title">Time passed at same time our love doubled</p>
-      <div id="calendar-popup"><img src="calender.jpg" alt="calendar" loading="lazy"></div>
+      <div id="calendar-popup"><img src="calender.jpg" alt="calendar"></div>
       <div class="time-flowers" id="time-flowers">
         <div class="time-petal"><div class="time-value" id="months">00</div><div class="time-label">months</div></div>
         <div class="flower-separator">•</div>
@@ -181,63 +162,44 @@
         <div class="time-petal"><div class="time-value" id="hours">00</div><div class="time-label">hours</div></div>
         <div class="flower-separator">•</div>
         <div class="time-petal"><div class="time-value" id="minutes">00</div><div class="time-label">minutes</div></div>
+        <div class="flower-separator">•</div>
+        <div class="time-petal"><div class="time-value" id="seconds">00</div><div class="time-label">seconds</div></div>
       </div>
 
       <!-- Quiz prompt -->
       <p id="quiz-instruction">Let's test how deep you connected to me</p>
       <button id="continue-quiz-button" onclick="window.open('https://zidhu-xd.github.io/quiz/', '_blank')">Continue to Quiz</button>
-
     </div>
   </div>
 
   <audio id="background-music" src="cakebg.mp3"></audio>
-
   <script>
-    document.getElementById('play-button').addEventListener('click', function () {
+    document.getElementById('play-button').addEventListener('click', function() {
       this.style.display = 'none';
-
-      // Fade out title and subtitle
       document.getElementById('title-text').style.opacity = '0';
       document.getElementById('subtitle-text').style.opacity = '0';
-
-      // Show cake gif and message
       document.getElementById('gif-wrapper').style.display = 'block';
       document.getElementById('message-line').style.display = 'block';
-
-      const audio = document.getElementById('background-music');
-      audio.volume = 0.4;
-      audio.play().catch(err => {
-        console.log("Error playing audio:", err);
-        alert("Music playback failed.");
-      });
-
+      const audio = document.getElementById('background-music'); audio.volume = 0.4; audio.play().catch(()=>{});
       document.getElementById('cut-cake-button').style.display = 'block';
     });
 
-    document.getElementById('cut-cake-button').addEventListener('click', function () {
+    document.getElementById('cut-cake-button').addEventListener('click', function() {
       this.style.display = 'none';
       document.getElementById('gif-wrapper').style.opacity = '0';
       document.getElementById('message-line').style.display = 'none';
-
-      setTimeout(() => {
+      setTimeout(()=>{
         document.getElementById('gif-wrapper').style.display = 'none';
-        const piece = document.getElementById('cake-piece-wrapper');
-        piece.style.display = 'block';
-        piece.style.animation = 'zoomIn 0.3s ease-in-out';
-
-        // Show message about cake being cut
+        const piece = document.getElementById('cake-piece-wrapper'); piece.style.display = 'block'; piece.style.animation = 'zoomIn 0.3s';
         document.getElementById('message-line-2').style.display = 'block';
-
         document.getElementById('continue-button').style.display = 'block';
-      }, 300);
+      },300);
     });
 
-    document.getElementById('continue-button').addEventListener('click', function () {
+    document.getElementById('continue-button').addEventListener('click', function() {
       this.style.display = 'none';
       document.getElementById('cake-piece-wrapper').style.display = 'none';
       document.getElementById('message-line-2').style.display = 'none';
-
-      // Reveal timer section
       document.getElementById('timer-title').style.display = 'block';
       document.getElementById('calendar-popup').style.display = 'block';
       document.getElementById('time-flowers').style.display = 'flex';
@@ -248,34 +210,24 @@
       function updateCountdown() {
         const now = new Date();
         const diff = now - startDate;
-
-        const msPerDay = 1000 * 60 * 60 * 24;
-        let months = 0;
-        let tempDate = new Date(startDate);
-        while (tempDate < now) {
-          tempDate.setMonth(tempDate.getMonth() + 1);
-          if (tempDate <= now) months++;
-          else {
-            tempDate.setMonth(tempDate.getMonth() - 1);
-            break;
-          }
-        }
-
-        const remainingMs = diff - (tempDate - startDate);
-        const days = Math.floor(remainingMs / msPerDay);
-        const remainingMsAfterDays = remainingMs % msPerDay;
-        const hours = Math.floor(remainingMsAfterDays / (1000 * 60 * 60));
-        const remainingMsAfterHours = remainingMsAfterDays % (1000 * 60 * 60);
-        const minutes = Math.floor(remainingMsAfterHours / (1000 * 60));
-
-        document.getElementById('months').textContent = months.toString().padStart(2, '0');
-        document.getElementById('days').textContent = days.toString().padStart(2, '0');
-        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-
+        const msPerDay = 1000*60*60*24;
+        let tempDate = new Date(startDate), months = 0;
+        while(tempDate < now){ tempDate.setMonth(tempDate.getMonth()+1); if(tempDate<=now) months++; else{ tempDate.setMonth(tempDate.getMonth()-1); break;} }
+        const remaining = diff - (tempDate - startDate);
+        const days = Math.floor(remaining/msPerDay);
+        const remAfterDays = remaining % msPerDay;
+        const hours = Math.floor(remAfterDays/(1000*60*60));
+        const remAfterHours = remAfterDays % (1000*60*60);
+        const minutes = Math.floor(remAfterHours/(1000*60));
+        const remAfterMinutes = remAfterHours % (1000*60);
+        const seconds = Math.floor(remAfterMinutes/1000);
+        document.getElementById('months').textContent = String(months).padStart(2,'0');
+        document.getElementById('days').textContent = String(days).padStart(2,'0');
+        document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
         requestAnimationFrame(updateCountdown);
       }
-
       updateCountdown();
     });
   </script>
